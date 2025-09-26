@@ -12,7 +12,7 @@ config_version=5
 
 config/name="BlicBlock"
 run/main_scene="uid://y16ro0xe1ulo"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 
 [display]
 
