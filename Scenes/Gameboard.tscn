@@ -1,11 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://d1yi0jlnftuax"]
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_akv4c"]
-load_path = "res://.godot/imported/Gameboard.png-b91c9ef4c1546abc49f98b46cea0ca96.ctex"
+[ext_resource type="Script" uid="uid://6fkgkmxx3ba4" path="res://Scripts/gameboard.gd" id="1_g2e53"]
 
 [node name="Node2D" type="Node2D"]
-
-[node name="TextureRect" type="TextureRect" parent="."]
-offset_right = 1784.0
-offset_bottom = 2169.0
-texture = SubResource("CompressedTexture2D_akv4c")
+script = ExtResource("1_g2e53")
