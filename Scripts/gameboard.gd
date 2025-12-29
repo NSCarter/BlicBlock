@@ -5,6 +5,7 @@ const block_length = 69
 var falling_block: Block
 var falling_timer: Timer
 var wait_timer: Timer
+var falling_pos = 2
 var blocks = [[], [], [], [], []]
 
 func _ready() -> void:
@@ -17,11 +18,18 @@ func _ready() -> void:
 	
 
 func _process(_delta: float) -> void:
-	if _reached_bottom():
+	if falling_block && _reached_bottom():
 		falling_timer.stop()
-		var falling_pos = int(falling_block.position.x / block_length)
 		blocks[falling_pos].append(falling_block)
+		falling_block = null
 		wait_timer.start()
+	
+	if Input.is_action_just_pressed("Left") && falling_pos != 0:
+		falling_block.position.x -= block_length
+		falling_pos -= 1
+	if Input.is_action_just_pressed("Right") && falling_pos != 4:
+		falling_block.position.x += block_length
+		falling_pos += 1
 	
 	
 func create_block():
@@ -42,10 +50,10 @@ func _on_falling_timer_timeout():
 	
 func _on_wait_timer_timeout():
 	create_block()
+	falling_pos = 2
 	
 	
 func _reached_bottom() -> bool:
-	var falling_pos = int(falling_block.position.x / block_length)
 	var stack_height = blocks[falling_pos].size() * block_length
 	var board_height = block_length * 7
 	var bottom = board_height - stack_height - block_length
